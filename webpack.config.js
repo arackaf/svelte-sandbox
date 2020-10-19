@@ -28,12 +28,26 @@ module.exports = {
       {
         test: /\.(html|svelte)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "svelte-loader",
-          options: {
-            emitCss: true,
+        use: [
+          {
+            loader: "babel-loader",
+            query: {
+              presets: ["@babel/preset-typescript"],
+              plugins: [
+                "@babel/plugin-proposal-class-properties",
+                "@babel/plugin-syntax-dynamic-import",
+                "@babel/plugin-proposal-optional-chaining",
+                "@babel/plugin-proposal-nullish-coalescing-operator",
+              ],
+            },
           },
-        },
+          {
+            loader: "svelte-loader",
+            options: {
+              emitCss: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(t|j)sx?$/,
