@@ -3,6 +3,7 @@
   import Lazy from "./Lazy";
   import Mapper from "./Mapper.svelte";
   import Mapper2 from "./Mapper2.svelte";
+  import Mapper3 from "./Mapper3.svelte";
 
   let lazyRequested = false;
 </script>
@@ -20,10 +21,20 @@
 
 <Mapper count={4} />
 
+<br />
+
 <Mapper count={4}>
   <div let:x slot="content" style="color: green">Overridden {x}</div>
 </Mapper>
 
+<br />
+
 <Mapper2 count={4}>
   <div slot="content" let:x let:hovering style="color: orange;">Overridden: {x} Hovering: {hovering}</div>
 </Mapper2>
+
+<br />
+
+<Mapper3 count={4}>
+  <div slot="content" let:x let:hovering style="color: purple;">Yoooo: {x} Hovering: {hovering}</div>
+</Mapper3>
