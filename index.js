@@ -1,6 +1,6 @@
 import App from "./src/App";
 
-import { Client, setDefaultClient } from "./src/graphql/index";
+import { Client, setDefaultClient } from "./src/micro-graphql-react/index";
 
 const client = new Client({
   endpoint: "https://mylibrary.io/graphql-public"

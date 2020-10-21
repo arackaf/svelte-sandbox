@@ -1,4 +1,4 @@
-import { writable, readable } from "svelte/store";
+import { writable, readable, derived } from "svelte/store";
 
 import { defaultClientManager } from "./client";
 import QueryManager from "./queryManager";
@@ -12,7 +12,7 @@ export function loadQuery(query, options = {}) {
   const queryManager = new QueryManager({ query, client, cache: options.cache, setState: queryStore.set }, options);
 
   return {
-    queryState: queryStore,
+    queryState: derived(queryStore, $state => $state),
     sync: (variables, { active } = {}) => queryManager.load([query, variables])
   };
 }

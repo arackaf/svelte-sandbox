@@ -1,5 +1,5 @@
 <script>
-  import { loadQuery } from "./graphql/query";
+  import { loadQuery } from "./micro-graphql-react/query";
   const query = `query getBooks($title: String) {allBooks(PAGE:1, PAGE_SIZE: 10, SORT: { title: 1 }, title_contains: $title) { Books { title } }}`;
 
   let title = "";
@@ -17,7 +17,7 @@
   <input bind:value={title} />
   <button on:click={syncVariables}>Go</button>
 
-  <div style="margin-top: 50px;">
+  <div style="margin-top: 20px;">
     {#if $queryState.loading}<span>LOADING</span>{/if}
 
     {#if $queryState.loaded}
@@ -31,3 +31,4 @@
     <hr />
   </div>
 </div>
+
