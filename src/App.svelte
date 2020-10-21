@@ -1,4 +1,5 @@
 <script>
+  import AnimateSandbox from "./AnimateSandbox.svelte";
   import Books from "./Books";
   import Lazy from "./Lazy";
   import Mapper from "./Mapper.svelte";
@@ -8,6 +9,11 @@
   let lazyRequested = false;
 </script>
 
+<br /><br />
+
+<AnimateSandbox />
+
+<br /><br />
 
 <Books />
 
