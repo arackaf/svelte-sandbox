@@ -8,6 +8,11 @@
   let lazyRequested = false;
 </script>
 
+
+<Books />
+
+<br /><br />
+
 <button on:click={() => (lazyRequested = true)}>Gimme lazy content</button>
 
 {#if lazyRequested}
@@ -17,7 +22,7 @@
   </Lazy>
 {/if}
 
-<Books />
+<br />
 
 <Mapper count={4} />
 

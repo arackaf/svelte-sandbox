@@ -15,7 +15,7 @@ module.exports = {
     publicPath: "/dist/",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".svelte"],
+    extensions: [".mjs", ".ts", ".tsx", ".js", ".svelte"],
     alias: {
       svelte: path.resolve("node_modules", "svelte"),
     },
