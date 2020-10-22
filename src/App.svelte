@@ -1,13 +1,26 @@
 <script>
   import AnimateSandbox from "./AnimateSandbox.svelte";
+  import BodyChild from "./BodyChild.svelte";
   import Books from "./Books";
+  import Counter from "./Counter.svelte";
   import Lazy from "./Lazy";
   import Mapper from "./Mapper.svelte";
   import Mapper2 from "./Mapper2.svelte";
   import Mapper3 from "./Mapper3.svelte";
 
   let lazyRequested = false;
+
+  let showBodyChild = true;
 </script>
+
+<br /><br />
+
+<button on:click={() => (showBodyChild = !showBodyChild)}>Toggle</button>
+{#if showBodyChild}
+  <BodyChild>
+    <Counter initialValue={5} />
+  </BodyChild>
+{/if}
 
 <br /><br />
 
