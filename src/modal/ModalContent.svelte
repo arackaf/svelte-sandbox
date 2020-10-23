@@ -4,7 +4,7 @@
   import "./modalInit"
 
   let contentNode;
-  let currentlyOpen;
+  let currentlyOpen = false;
   export let open = false;
 
   onMount(sync);

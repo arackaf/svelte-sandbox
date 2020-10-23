@@ -17,6 +17,7 @@
   let showBodyChild = true;
 
   let modalOpen = false;
+  let secondModalOpen = false;
 
   let counter;
 </script>
@@ -26,6 +27,14 @@
 <ModalContent open={modalOpen}>
   <h1>Hi there</h1>
   <button on:click={() => (modalOpen = false)}>Close</button>
+
+  <br />
+  <button on:click={() => (secondModalOpen = true)}>Second Modal</button>
+</ModalContent>
+
+<ModalContent open={secondModalOpen}>
+  <h1>This is a bad UI</h1>
+  <button on:click={() => (secondModalOpen = false)}>Close</button>
 </ModalContent>
 
 <br /><br />

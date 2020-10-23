@@ -8,10 +8,6 @@
 
 <svelte:window on:click={globalClick} />
 
-{#if $modalState.modals.length}
-  <div in:fade="{{ duration: 250 }}" out:fade="{{ duration: 200 }}" class="svelte-modal-overlay">
-    {#each $modalState.modals as node}
-      <ModalInternal {node} />
-    {/each}
-  </div>
-{/if}
+<div in:fade={{ duration: 250 }} out:fade={{ duration: 200 }} class="svelte-modal-overlay">
+  <slot />
+</div>

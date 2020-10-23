@@ -40,4 +40,6 @@
   }
 </script>
 
-<div in:modalIn out:modalOut bind:this={root} />
+<div in:modalIn out:modalOut bind:this={root}>
+  <slot />
+</div>
