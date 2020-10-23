@@ -7,18 +7,33 @@
   import Mapper from "./Mapper.svelte";
   import Mapper2 from "./Mapper2.svelte";
   import Mapper3 from "./Mapper3.svelte";
+  import ModalContent from "./modal/ModalContent.svelte";
+  import Overlay from "./modal/Overlay.svelte";
+
+  import "./modal/styles.css";
 
   let lazyRequested = false;
 
   let showBodyChild = true;
+
+  let modalOpen = false;
+
+  let counter;
 </script>
+
+<button on:click={() => (modalOpen = true)}>Show Modal</button>
+
+<ModalContent open={modalOpen}>
+  <h1>Hi there</h1>
+  <button on:click={() => (modalOpen = false)}>Close</button>
+</ModalContent>
 
 <br /><br />
 
 <button on:click={() => (showBodyChild = !showBodyChild)}>Toggle</button>
 {#if showBodyChild}
   <BodyChild>
-    <Counter initialValue={5} />
+    <Counter bind:this={counter} initialValue={5} />
   </BodyChild>
 {/if}
 

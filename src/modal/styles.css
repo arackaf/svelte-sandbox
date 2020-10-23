@@ -1,0 +1,50 @@
+.svelte-modal-overlay {
+  background: hsla(0, 0%, 0%, 0.33);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 2;
+}
+
+.svelte-modal-content {
+  width: 50vw;
+  margin: 10vh auto;
+  background: white;
+  padding: 2rem;
+  outline: none;
+  max-width: 600px;
+}
+
+@media (max-width: 1000px) {
+  div.svelte-modal-content {
+    width: 55vw;
+  }
+}
+@media (max-width: 800px) {
+  div.svelte-modal-content {
+    width: 60vw;
+  }
+}
+@media (max-width: 650px) {
+  div.svelte-modal-content {
+    width: 70vw;
+  }
+}
+@media (max-width: 600px) {
+  div.svelte-modal-content {
+    width: 80vw;
+  }
+}
+@media (max-width: 550px) {
+  div.svelte-modal-content {
+    width: 90vw;
+  }
+}
+@media (max-width: 500px) {
+  div.svelte-modal-content {
+    width: 95vw;
+  }
+}
