@@ -1,11 +1,11 @@
 <script>
   import { spring } from "svelte/motion";
 
-  let height = 300;
+  let height = 0;
   let open = false;
 
   const openSpringConfig = {
-    stiffness: 0.1,
+    stiffness: 0.5,
     damping: 0.35,
   };
   const closeSpringConfig = {
@@ -13,12 +13,20 @@
     damping: 1,
   };
 
-  let heightSpring = spring(0, {});
+  let heightSpring = spring(-30, {});
 
-  $: heightSpring.set(open ? height : 0);
+  $: heightSpring.set(open ? height : -30);
   $: Object.assign(heightSpring, open ? openSpringConfig : closeSpringConfig);
+
+  let arr = [];
+  $: arr.push($heightSpring);
+  $: console.log($heightSpring);
+
+  window.log = () => console.log(arr.join(", "))
+
+
 </script>
 
 <button on:click={() => (open = !open)}>Toggle</button>
 
-<div style="background-color: pink; width: 300px; height: {$heightSpring}px" />
+<div style={`margin-left: 80px; background-color: pink; width: 300px; height: 30px; transform: translate3d(0px, ${$heightSpring}px, 0px);`} />
