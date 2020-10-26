@@ -1,5 +1,5 @@
 <script>
-  import { spring } from "svelte/motion";
+  import { spring, springFrames } from "svelte/motion";
 
   let height = 0;
   let open = false;
@@ -14,6 +14,9 @@
   };
 
   let heightSpring = spring(-30, {});
+
+  let X = springFrames(-30, 0, openSpringConfig);
+  debugger;
 
   $: heightSpring.set(open ? height : -30);
   $: Object.assign(heightSpring, open ? openSpringConfig : closeSpringConfig);

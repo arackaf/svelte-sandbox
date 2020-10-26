@@ -88,7 +88,7 @@
     0,
   ];
 
-  const springIn = frames => t => {
+  const springEasing = frames => t => {
     const indexPrecise = t * frames.length;
     const indexExcess = indexPrecise % 1;
 
@@ -97,23 +97,29 @@
     return indexExcess ? a + (b - a) * indexExcess : a;
   };
 
+  function springEnter(frames, from, to, opts) {
+    return {
+      duration: (frames.length * 1000) / 60,
+      easing: springEasing(frames),
+    };
+  }
 
-  const modalSpringIn = springIn(frames);
-  
+  const { easing: modalSpringIn, duration } = springEnter(frames);
+
   let root;
   export let node;
-  
+
   onMount(() => {
     root.appendChild(node);
   });
-  
-  const modalSpringBouncyIn = springIn(modalInBouncyFrames);
-  
+
+  //const modalSpringBouncyIn = springEasing(modalInBouncyFrames);
+
   function modalIn() {
     return {
-      duration: (frames.length * 1000) / 60,
+      duration,
       css: t => {
-        const transformY = modalSpringBouncyIn(t);
+        const transformY = modalSpringIn(t);
         const opacity = expoOut(t);
 
         return `
@@ -140,6 +146,12 @@
   }
 </script>
 
-<div in:modalIn out:modalOut bind:this={root}>
+<style>
+  .xxxmodal {
+    transform: translate3d(0, -90px, 0);
+  }
+</style>
+
+<div class="modal" in:modalIn out:modalOut bind:this={root}>
   <slot />
 </div>
