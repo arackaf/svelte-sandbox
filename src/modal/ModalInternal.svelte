@@ -146,23 +146,23 @@
   };
 
   function springIn(from, to, springOptions){
-    return springToEasing(false, from, to, springOptions);
+    return springToTransition(false, from, to, springOptions);
   }
 
   function springOut(from, to, springOptions){
-    return springToEasing(true, from, to, springOptions);
+    return springToTransition(true, from, to, springOptions);
   }
 
-  function springToEasing(out, from, to, springOptions) {
+  function springToTransition(out, from, to, springOptions) {
     const frames = springFrames(from, to, springOptions)
     return {
       duration: (frames.length * 1000) / 60,
-      easing: springEasing(frames),
+      tickToValue: springEasing(frames),
     };
   }
 
-  const { easing: modalSpringIn, duration: springInDuration } = springIn(-30, 0, { stiffness: 0.1, damping: 0.35, precision: 0.01 });
-  const { easing: modalSpringOut, duration: springOutDuration } = springOut(0, 90, { stiffness: 0.9, damping: 0.1, precision: 0.01 });
+  const { tickToValue: modalSpringIn, duration: springInDuration } = springIn(-30, 0, { stiffness: 0.1, damping: 0.35, precision: 0.01 });
+  const { tickToValue: modalSpringOut, duration: springOutDuration } = springOut(0, 90, { stiffness: 0.9, damping: 0.1, precision: 0.01 });
 
   let root;
   export let node;
