@@ -1,7 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
-  import { cubicIn, expoIn, expoOut, quadIn } from "svelte/easing";
+  import { cubicIn, cubicOut, expoIn, expoOut, quadIn, quintOut } from "svelte/easing";
+
+  import { springFrames } from "svelte-helpers/animation";
 
   const frames = [
     -30,
@@ -131,23 +133,35 @@
     0,
   ];
 
-  const springEasing = frames => t => {
+  const springEasing = (frames, out = false) => t => {
+    t = out ? 1 - t : t;
     const indexPrecise = t * frames.length;
     const indexExcess = indexPrecise % 1;
 
-    const a = frames[indexPrecise - indexExcess];
-    const b = frames[indexPrecise - indexExcess + 1] ?? a;
+    const index = ~~indexPrecise;
+
+    const a = frames[index];
+    const b = frames[index + 1] ?? a;
     return indexExcess ? a + (b - a) * indexExcess : a;
   };
 
-  function springEnter(frames, from, to, opts) {
+  function springIn(from, to, springOptions){
+    return springToEasing(false, from, to, springOptions);
+  }
+
+  function springOut(from, to, springOptions){
+    return springToEasing(true, from, to, springOptions);
+  }
+
+  function springToEasing(out, from, to, springOptions) {
+    const frames = springFrames(from, to, springOptions)
     return {
       duration: (frames.length * 1000) / 60,
       easing: springEasing(frames),
     };
   }
 
-  const { easing: modalSpringIn, duration } = springEnter(frames);
+  const { easing: modalSpringIn, duration } = springIn(-30, 0, { stiffness: 0.1, damping: 0.35, precision: 0.01 });
 
   let root;
   export let node;
@@ -176,14 +190,16 @@
 
   function modalOut() {
     return {
-      duration: 200,
+      duration: 250,
       css: t => {
-        const eased = cubicIn(t);
-        console.log((1 - eased) * 30);
+        const easedTransform = cubicIn(t);
+        const easedOpacity = quintOut(t);
+
+        console.log(t, easedTransform, easedOpacity);
 
         return `
-          transform: translate3d(0px, ${(1 - eased) * 30}px, 0px);
-          opacity: ${t};
+          transform: translate3d(0px, ${(1 - easedTransform) * 30}px, 0px);
+          opacity: ${easedOpacity};
         `;
       },
     };
