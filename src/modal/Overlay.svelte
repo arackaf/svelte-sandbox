@@ -10,6 +10,6 @@
 
 <svelte:window on:click={globalClick} />
 
-<div in:fade={{ duration: 250, easing: sineOut }} out:fade={{ duration: 200, easing: expoOut }} class="svelte-modal-overlay">
+<div in:fade={{ duration: 250, easing: sineOut }} out:fade={{ duration: 2000, easing: expoOut }} class="svelte-modal-overlay">
   <slot />
 </div>

@@ -157,7 +157,7 @@
     const frames = springFrames(from, to, springOptions)
     return {
       duration: (frames.length * 1000) / 60,
-      tickToValue: springEasing(frames),
+      tickToValue: springEasing(frames, out),
     };
   }
 
@@ -237,6 +237,6 @@
   }
 </style>
 
-<div class="modal" in:modalInRaw out:modalOut bind:this={root}>
+<div class="modal" in:modalInRaw out:modalSpringOutTransition bind:this={root}>
   <slot />
 </div>
