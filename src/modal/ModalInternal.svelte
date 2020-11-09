@@ -161,7 +161,8 @@
     };
   }
 
-  const { easing: modalSpringIn, duration } = springIn(-30, 0, { stiffness: 0.1, damping: 0.35, precision: 0.01 });
+  const { easing: modalSpringIn, duration: springInDuration } = springIn(-30, 0, { stiffness: 0.1, damping: 0.35, precision: 0.01 });
+  const { easing: modalSpringOut, duration: springOutDuration } = springOut(0, 90, { stiffness: 0.9, damping: 0.1, precision: 0.01 });
 
   let root;
   export let node;
@@ -172,13 +173,24 @@
 
   //const modalSpringBouncyIn = springEasing(modalInBouncyFrames);
 
+  function modalInRaw() {
+    return {
+      duration: springInDuration,
+      easing: modalSpringIn,
+      css: t => {
+        return `
+          transform: translate3d(0px, ${t}px, 0px);
+        `;
+      },
+    };
+  }
+
   function modalIn() {
     return {
-      duration: duration,
+      duration: springInDuration,
       css: t => {
         const transformY = modalSpringIn(t);
         const opacity = expoOut(t);
-        console.log({ transformY, t });
 
         return `
           transform: translate3d(0px, ${transformY}px, 0px);
@@ -188,18 +200,31 @@
     };
   }
 
+  function modalSpringOutTransition() {
+    return {
+      duration: springOutDuration,
+      css: t => {
+        const easedTransform = modalSpringOut(t);
+        console.log(t, easedTransform);
+        const easedOpacity = quintOut(t);
+
+        return `
+          transform: translate3d(0px, ${easedTransform}px, 0px);
+        `;
+      },
+    };
+  }
+
   function modalOut() {
     return {
-      duration: 250,
+      duration: 200,
       css: t => {
         const easedTransform = cubicIn(t);
         const easedOpacity = quintOut(t);
 
-        console.log(t, easedTransform, easedOpacity);
-
         return `
           transform: translate3d(0px, ${(1 - easedTransform) * 30}px, 0px);
-          opacity: ${easedOpacity};
+          /*opacity: ${easedOpacity};*/
         `;
       },
     };
@@ -212,6 +237,6 @@
   }
 </style>
 
-<div class="modal" in:modalIn out:modalOut bind:this={root}>
+<div class="modal" in:modalInRaw out:modalOut bind:this={root}>
   <slot />
 </div>
