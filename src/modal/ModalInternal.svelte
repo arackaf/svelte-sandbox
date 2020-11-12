@@ -17,7 +17,6 @@
   console.log(springOutDuration);
   console.log(XXX);
 
-
   let root;
   export let node;
 
@@ -96,8 +95,6 @@
   }
 </style>
 
-<div class="svelte-modal-wrapper">
-  <div class="modal" in:modalInRaw out:modalSpringOutTransition bind:this={root}>
-    <slot />
-  </div>
+<div class="modal" in:modalInRaw out:modalSpringOutTransition bind:this={root}>
+  <slot />
 </div>

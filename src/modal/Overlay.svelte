@@ -38,4 +38,5 @@
 <!-- out:overlayOut -->
 
 <div in:fade={{ duration: 250, easing: sineOut }} out:overlayOut class="svelte-modal-overlay">
+  <slot />
 </div>
