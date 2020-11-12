@@ -22,7 +22,7 @@
   let counter;
 </script>
 
-<button on:click={() => (modalOpen = true)}>Show Modal</button>
+<button style="font-size: 50px;" on:click={() => (modalOpen = true)}>Show Modal</button>
 
 <ModalContent open={modalOpen}>
   <h1>Hi there</h1>

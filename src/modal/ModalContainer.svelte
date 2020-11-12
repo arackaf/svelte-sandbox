@@ -7,6 +7,6 @@
 
 {#each $modalState.modals as node}
   <Overlay>
-    <ModalInternal {node} />
   </Overlay>
+  <ModalInternal {node} />
 {/each}

@@ -9,6 +9,16 @@
   z-index: 2;
 }
 
+.svelte-modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 2;
+}
+
 .svelte-modal-content {
   width: 50vw;
   margin: 10vh auto;
@@ -16,6 +26,8 @@
   padding: 2rem;
   outline: none;
   max-width: 600px;
+  border-radius: 5px;
+  border: 2px solid blue;
 }
 
 @media (max-width: 1000px) {
