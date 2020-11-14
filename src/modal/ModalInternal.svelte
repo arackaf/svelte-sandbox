@@ -95,6 +95,6 @@
   }
 </style>
 
-<div class="modal" in:modalInRaw out:modalSpringOutTransition bind:this={root}>
+<div class="modal" in:modalIn out:modalSpringOutTransition bind:this={root}>
   <slot />
 </div>

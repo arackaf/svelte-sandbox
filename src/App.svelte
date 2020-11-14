@@ -16,11 +16,30 @@
 
   let showBodyChild = true;
 
+  let junkOpen = false;
   let modalOpen = false;
   let secondModalOpen = false;
 
   let counter;
+
+  function goIn(node){
+    console.log("IN", node)
+    return {
+      duration: 2000,
+      css: t => `opacity: ${t}`
+    }
+  }
+  function goOut(node){
+    console.log("OUT", node)
+    return {
+      duration: 2000,
+      css: t => `opacity: ${t}`
+    }
+  }
 </script>
+
+<button style="font-size: 50px;" on:click={() => (junkOpen = true)}>Show junk</button>
+<button style="font-size: 50px;" on:click={() => (junkOpen = false)}>Hide junk</button>
 
 <button style="font-size: 50px;" on:click={() => (modalOpen = true)}>Show Modal</button>
 
@@ -38,6 +57,10 @@
 </ModalContent>
 
 <br /><br />
+
+{#if junkOpen}
+  <div in:goIn out:goOut><h1>JUNK</h1></div>
+{/if}
 
 <button on:click={() => (showBodyChild = !showBodyChild)}>Toggle</button>
 {#if showBodyChild}
