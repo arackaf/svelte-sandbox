@@ -7,10 +7,7 @@
   import Mapper from "./Mapper.svelte";
   import Mapper2 from "./Mapper2.svelte";
   import Mapper3 from "./Mapper3.svelte";
-  import ModalContent from "./modal/ModalContent.svelte";
-  import Overlay from "./modal/Overlay.svelte";
-
-  import "./modal/styles.css";
+  import Modal from "svelte-helpers/Modal";
 
   let lazyRequested = false;
 
@@ -22,44 +19,49 @@
 
   let counter;
 
-  function goIn(node){
-    console.log("IN", node)
+  function goIn(node) {
+    console.log("IN", node);
     return {
       duration: 2000,
       css: t => `opacity: ${t}`
-    }
+    };
   }
-  function goOut(node){
-    console.log("OUT", node)
+  function goOut(node) {
+    console.log("OUT", node);
     return {
       duration: 2000,
       css: t => `opacity: ${t}`
-    }
+    };
   }
+
+  const closeModal1 = () => (modalOpen = false);
+  const closeModal2 = () => (secondModalOpen = false);
 </script>
 
-<button style="font-size: 50px;" on:click={() => (junkOpen = true)}>Show junk</button>
-<button style="font-size: 50px;" on:click={() => (junkOpen = false)}>Hide junk</button>
+<button on:click={() => (junkOpen = true)}>Show junk</button>
+<button on:click={() => (junkOpen = false)}>Hide junk</button>
 
-<button style="font-size: 50px;" on:click={() => (modalOpen = true)}>Show Modal</button>
+<button on:click={() => (modalOpen = true)}>Show Modal</button>
 
-<ModalContent open={modalOpen}>
+<Modal open={modalOpen} onClose={closeModal1}>
   <h1>Hi there</h1>
   <button on:click={() => (modalOpen = false)}>Close</button>
 
   <br />
   <button on:click={() => (secondModalOpen = true)}>Second Modal</button>
-</ModalContent>
+</Modal>
 
-<ModalContent open={secondModalOpen}>
+<Modal open={secondModalOpen} onClose={closeModal2}>
   <h1>This is a bad UI</h1>
   <button on:click={() => (secondModalOpen = false)}>Close</button>
-</ModalContent>
+</Modal>
 
 <br /><br />
 
 {#if junkOpen}
-  <div in:goIn out:goOut><h1>JUNK</h1></div>
+  <div in:goIn out:goOut>
+    <h1>JUNK</h1>
+  </div>
 {/if}
 
 <button on:click={() => (showBodyChild = !showBodyChild)}>Toggle</button>
