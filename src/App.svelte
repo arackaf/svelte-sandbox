@@ -34,14 +34,19 @@
     };
   }
 
+  const openModal1 = () => (modalOpen = true);
   const closeModal1 = () => (modalOpen = false);
   const closeModal2 = () => (secondModalOpen = false);
+
+  const keyDown = evt => {
+    console.log(evt.keyCode);
+  };
 </script>
 
 <button on:click={() => (junkOpen = true)}>Show junk</button>
 <button on:click={() => (junkOpen = false)}>Hide junk</button>
 
-<button on:click={() => (modalOpen = true)}>Show Modal</button>
+<button on:click={openModal1}>Show Modal</button>
 
 <Modal open={modalOpen} onClose={closeModal1}>
   <h1>Hi there</h1>
