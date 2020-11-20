@@ -1,12 +1,7 @@
 import express, { response } from "express";
-import cors from "cors";
 const app = express();
-import path from "path";
-import bodyParser from "body-parser";
-import session from "express-session";
-import cookieParser from "cookie-parser";
-import compression from "compression";
 
+import path from "path";
 import fs from "fs";
 
 import "svelte/register";
@@ -35,17 +30,6 @@ const WrappedApp = SSRWrapper(App);
 const hour = 3600000;
 const rememberMeExpiration = 2 * 365 * 24 * hour; //2 years
 
-app.use(compression());
-app.use(bodyParser.json()); // to support JSON-encoded bodies
-app.use(
-  bodyParser.urlencoded({
-    // to support URL-encoded bodies
-    extended: true
-  })
-);
-app.use(cookieParser());
-app.use(session({ secret: "adam_booklist", saveUninitialized: true, resave: true }));
-
 const statics = ["/static/", "/node_modules/", "/dist/"];
 statics.forEach(folder => app.use(folder, express.static(__dirname + folder)));
 
@@ -58,9 +42,6 @@ app.get("/server", (req, res) => {
   //res.sendFile(path.join(__dirname + "/dist/indexServer.html"));
   //return;
   const file = fs.readFileSync(path.resolve(__dirname, "dist", "indexServer.html"), "utf8");
-
-  //console.log(typeof file);
-
   const { html, css, head } = WrappedApp.render({});
 
   res.writeHead(200, { "Content-Type": "text/html" });
@@ -84,3 +65,4 @@ function shutdown() {
 app.listen(8080);
 
 export default null;
+
