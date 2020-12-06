@@ -7,7 +7,10 @@ import fs from "fs";
 import "svelte/register";
 import { get } from "svelte/store";
 
-const App = require("./src/AppServer.svelte").default;
+//const App = require("./src/AppServer.svelte").default;
+const App = require("./dist/appServer-bundle.js").default;
+//console.log(App, typeof App.default, typeof App.component);
+
 const SSRWrapperComponent = require("./src/SSRWrapper.svelte").default;
 const SSRPrime = require("./src/SSRPrime.svelte").default;
 import cachePrime from "./src/serverSideCachePrime";

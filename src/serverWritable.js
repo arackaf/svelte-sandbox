@@ -6,8 +6,8 @@ export default function getStore(arg) {
 
   console.log("XXX", typeof require);
   if (typeof window === "undefined") {
-    const lookup = eval(`require("./serverPrimer")`);
-    val = lookup(arg);
+    //const lookup = eval(`require("./serverPrimer")`);
+    //val = lookup(arg);
   }
 
   const result = writable(val, () => {});
