@@ -33,7 +33,9 @@ const WrappedApp = SSRWrapper(App);
 const hour = 3600000;
 const rememberMeExpiration = 2 * 365 * 24 * hour; //2 years
 
-const statics = ["/static/", "/node_modules/", "/dist/"];
+app.get("/*.js", express.static(__dirname + "/dist/"));
+
+const statics = ["/static/", "/node_modules/"];
 statics.forEach(folder => app.use(folder, express.static(__dirname + folder)));
 
 const modules = [""];
@@ -52,7 +54,6 @@ app.get("/server", (req, res) => {
   res.end();
 });
 
-app.get("/*.js", express.static(__dirname + "/dist/"));
 
 function browseToSvelte(request, response) {
   response.sendFile(path.join(__dirname + "/dist/index.html"));
