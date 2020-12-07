@@ -12,7 +12,8 @@ module.exports = [
     output: {
       filename: isProd ? "[name]-bundle-[contenthash].js" : "[name]-bundle.js",
       chunkFilename: isProd ? "[name]-chunk-[contenthash].js" : "[name]-chunk.js",
-      path: path.resolve(__dirname, "dist")
+      path: path.resolve(__dirname, "dist"),
+      publicPath: "/dist/"
     },
     resolve: {
       extensions: [".mjs", ".ts", ".tsx", ".js", ".svelte"],
@@ -110,7 +111,8 @@ module.exports = [
     output: {
       filename: isProd ? "[name]-bundle-[contenthash].js" : "[name]-bundle.js",
       chunkFilename: isProd ? "[name]-chunk-[contenthash].js" : "[name]-chunk.js",
-      path: path.resolve(__dirname, "dist")
+      path: path.resolve(__dirname, "dist"),
+      publicPath: "/dist/"
     },
     resolve: {
       extensions: [".mjs", ".ts", ".tsx", ".js", ".svelte"],
