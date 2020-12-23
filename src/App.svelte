@@ -1,7 +1,7 @@
 <style type="scss">
   .root {
     h1 {
-      color: rgb(196, 79, 33);
+      color: rgb(241, 200, 183);
     }
   }
 </style>
