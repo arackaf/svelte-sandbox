@@ -1,7 +1,8 @@
-<style type="scss">
+<style type="stylus">
+  $foo = red;
   .root {
     h1 {
-      color: rgb(241, 200, 183);
+      color: $foo;
     }
   }
 </style>

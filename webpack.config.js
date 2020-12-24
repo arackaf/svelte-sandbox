@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const sass = require("svelte-preprocess-sass").sass;
+const sveltePreprocess = require("svelte-preprocess");
+const stylus = require("svelte-preprocess").stylus;
 
 module.exports = [
   {
@@ -47,11 +49,8 @@ module.exports = [
             {
               loader: "svelte-loader",
               options: {
-                emitCss: true,
                 customElement: true,
-                preprocess: {
-                  style: sass({}, { name: 'scss' })
-                }
+                preprocess: sveltePreprocess()
               }
             }
           ]
