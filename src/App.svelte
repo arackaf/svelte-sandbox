@@ -1,5 +1,5 @@
 <style type="stylus">
-  $foo = red;
+  $foo = GREEN;
   .root {
     h1 {
       color: $foo;

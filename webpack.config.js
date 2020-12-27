@@ -50,7 +50,7 @@ module.exports = [
               loader: "svelte-loader",
               options: {
                 customElement: true,
-                preprocess: sveltePreprocess()
+                preprocess: sveltePreprocess({ replace: [["GREEN", "#00FFFF"]] })
               }
             }
           ]
