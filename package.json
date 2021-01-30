@@ -35,7 +35,7 @@
     "node-sass": "^4.14.1",
     "sass": "^1.30.0",
     "sass-loader": "^10.0.3",
-    "svelte": "^3.29.7",
+    "svelte": "^3.32.1",
     "svelte-helpers": "0.0.1-beta16",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.6.1",
