@@ -31,15 +31,18 @@
 </script>
 
 <div bind:this={rootEl} class="root">
-  <h1>Hi there BEFORE SLOT</h1>
+  <h1 class="x">Hi there BEFORE SLOT</h1>
   <slot />
   <h1>Hi there AFTER SLOT</h1>
 </div>
 
-<style type="scss">
-  .root {
-    h1 {
-      color: rgb(241, 200, 183);
-    }
+<style>
+
+  :host > * {
+    color:purple;
+  }
+
+  .x {
+    color: green;
   }
 </style>
