@@ -13,7 +13,7 @@
 
       setTimeout(() => {
         let div = document.createElement("div");
-        div.innerHTML = "<my-element foo='pop' id='c' my-val='c' val='c2' disabled><span slot='s' style='color: orange'>Hi There</span></my-element>";
+        div.innerHTML = "<my-element foo='pop' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
         document.body.appendChild(div);
 
         console.log(div.firstChild.foo);

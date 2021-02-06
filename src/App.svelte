@@ -12,6 +12,10 @@
       let val = host.getAttribute("val");
       let val2 = host.getAttribute("my-val");
 
+      let a = host.querySelector("h2");
+      let b = host.querySelector("h3");
+      console.log("here", a, b);
+
       console.log("slot", s);
 
       console.log("init", { val, val2 });
@@ -36,9 +40,9 @@
 
 <div bind:this={rootEl} class="root">
   <h1 class="x">Hi there BEFORE SLOT</h1>
-  <slot name="s" bind:this={s} />
+  <slot name="s" />
   <h1>Hi there AFTER SLOT</h1>
-
+  <slot name="s2" />
 </div>
 
 <style>
