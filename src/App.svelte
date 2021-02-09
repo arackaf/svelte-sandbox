@@ -1,9 +1,27 @@
+<svelte:options tag="my-element" />
+
 <script>
   import { onMount, tick } from "svelte";
 
   let s;
   let rootEl;
   let foo = 12;
+  export let x = 15;
+
+  export let func = null;
+  export const setFunc = fn => (func = fn);
+
+  $: {
+    if (func == null) {
+      console.log("FUNC", "NULL");
+    } else {
+      console.log("FUNC", func());
+    }
+  }
+
+  $: {
+    console.log("X", x);
+  }
 
   onMount(() => {
     let observer;
@@ -36,8 +54,6 @@
   });
 </script>
 
-<svelte:options tag="my-element" />
-
 <div bind:this={rootEl} class="root">
   <h1 class="x">Hi there BEFORE SLOT</h1>
   <slot name="s" />
@@ -46,9 +62,8 @@
 </div>
 
 <style>
-
   :host > * {
-    color:purple;
+    color: purple;
   }
 
   .x {

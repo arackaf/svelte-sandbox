@@ -13,7 +13,7 @@
 
       setTimeout(() => {
         let div = document.createElement("div");
-        div.innerHTML = "<my-element foo='pop' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
+        div.innerHTML = "<my-element foo='pop' x='99' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
         document.body.appendChild(div);
 
         console.log(div.firstChild.foo);
@@ -26,14 +26,26 @@
 
       setTimeout(() => {
         let el = document.getElementById("c");
+        el.func = () => "Hi!"
+      }, 300);
+      setTimeout(() => {
+        let el = document.getElementById("c");
+        el.setFunc(() => "Hi There!");
+      }, 600);
+
+      setTimeout(() => {
+        let el = document.getElementById("c");
         el.setAttribute("val", "x");
+        el.setAttribute("x", "12010");
         el.setAttribute("my-val", "a");
       }, 2000);
+      
       
       setTimeout(() => {
         let el = document.getElementById("c");
         el.setAttribute("val", "y");
         el.setAttribute("my-val", "b");
+        el.x = { a: 12 };
         //el.setAttribute("disabled", "true");
       }, 3000);
 
@@ -41,6 +53,7 @@
         let el = document.getElementById("c");
         el.removeAttribute("val");
         el.removeAttribute("my-val");
+        el.x = { a: 13 };
         //el.setAttribute("disabled", "true");
       }, 4000);
 
