@@ -49,6 +49,7 @@
     });
 
     return () => {
+      console.log("DISCONNECT A");
       observer.disconnect();
     };
   });

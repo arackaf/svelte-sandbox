@@ -25,7 +25,7 @@ module.exports = [
       modules: [path.resolve("./"), path.resolve("./node_modules")],
       mainFields: ["svelte", "browser", "module", "main"]
     },
-    mode: isProd ? "production" : "development",
+    mode: isProd || true ? "production" : "development",
     module: {
       rules: [
         {
@@ -103,7 +103,7 @@ module.exports = [
       ]
     },
     optimization: {
-      //minimize: false
+      minimize: false
     },
     plugins: [
       new HtmlWebpackPlugin({ template: "default.htm", inject: "head" }),

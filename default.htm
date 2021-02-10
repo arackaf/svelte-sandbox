@@ -16,6 +16,15 @@
         div.innerHTML = "<my-element foo='pop' x='99' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
         document.body.appendChild(div);
 
+        let div2 = document.createElement("div");
+        div2.innerHTML = "<my-wc><h2 style='color: blue'>SLOT</h2></my-wc>";
+        document.body.appendChild(div2);
+
+        setTimeout(() => {
+          div.innerHTML = "";
+          div2.innerHTML = "";
+        }, 5000)
+
         console.log(div.firstChild.foo);
         div.firstChild.foo = 13;
         console.log(div.firstChild.foo);
