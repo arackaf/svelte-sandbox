@@ -8,63 +8,82 @@
   <body class="scheme1">
 
     <div id="home"></div>
+    <button onclick="toggle()">Toggle</button>
+    <div id="sandbox"></div>
 
     <script>
 
+      var wc;
+      var sandbox = document.getElementById("sandbox");
+      var isIn = false;
       setTimeout(() => {
-        let div = document.createElement("div");
-        div.innerHTML = "<my-element foo='pop' x='99' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
-        document.body.appendChild(div);
-
-        let div2 = document.createElement("div");
-        div2.innerHTML = "<my-wc><h2 style='color: blue'>SLOT</h2></my-wc>";
-        document.body.appendChild(div2);
-
-        setTimeout(() => {
-          div.innerHTML = "";
-          div2.innerHTML = "";
-        }, 5000)
-
-        console.log(div.firstChild.foo);
-        div.firstChild.foo = 13;
-        console.log(div.firstChild.foo);
-        div.firstChild.setAttribute("foo", "goes");
-        console.log(div.firstChild.foo);
-
+        wc = document.createElement("my-wc");
       }, 100);
 
-      setTimeout(() => {
-        let el = document.getElementById("c");
-        el.func = () => "Hi!"
-      }, 300);
-      setTimeout(() => {
-        let el = document.getElementById("c");
-        el.setFunc(() => "Hi There!");
-      }, 600);
+      function toggle(){
+        if (isIn) {
+          wc.parentNode.removeChild(wc);
+        } else {
+          sandbox.appendChild(wc);
+        }
 
-      setTimeout(() => {
-        let el = document.getElementById("c");
-        el.setAttribute("val", "x");
-        el.setAttribute("x", "12010");
-        el.setAttribute("my-val", "a");
-      }, 2000);
+        isIn = !isIn;
+      }
+
+      // setTimeout(() => {
+      //   let div = document.createElement("div");
+      //   div.innerHTML = "<my-element foo='pop' x='99' id='c' my-val='c' val='c2' disabled><h2 slot='s' style='color: orange'>Hi There</h2><h3 slot='s2' style='color: blue'>Yo</h3></my-element>";
+      //   document.body.appendChild(div);
+
+      //   let div2 = document.createElement("div");
+      //   div2.innerHTML = "<my-wc><h2 style='color: blue'>SLOT</h2></my-wc>";
+      //   document.body.appendChild(div2);
+
+      //   setTimeout(() => {
+      //     div.innerHTML = "";
+      //     div2.innerHTML = "";
+      //   }, 5000)
+
+      //   console.log(div.firstChild.foo);
+      //   div.firstChild.foo = 13;
+      //   console.log(div.firstChild.foo);
+      //   div.firstChild.setAttribute("foo", "goes");
+      //   console.log(div.firstChild.foo);
+
+      // }, 100);
+
+      // setTimeout(() => {
+      //   let el = document.getElementById("c");
+      //   el.func = () => "Hi!"
+      // }, 300);
+      // setTimeout(() => {
+      //   let el = document.getElementById("c");
+      //   el.setFunc(() => "Hi There!");
+      // }, 600);
+
+      // setTimeout(() => {
+      //   let el = document.getElementById("c");
+      //   el.setAttribute("val", "x");
+      //   el.setAttribute("x", "12010");
+      //   el.setAttribute("my-val", "a");
+      // }, 2000);
       
       
-      setTimeout(() => {
-        let el = document.getElementById("c");
-        el.setAttribute("val", "y");
-        el.setAttribute("my-val", "b");
-        el.x = { a: 12 };
-        //el.setAttribute("disabled", "true");
-      }, 3000);
+      // setTimeout(() => {
+      //   let el = document.getElementById("c");
+      //   el.setAttribute("val", "y");
+      //   el.setAttribute("my-val", "b");
+      //   el.x = { a: 12 };
+      //   //el.setAttribute("disabled", "true");
+      // }, 3000);
 
-      setTimeout(() => {
-        let el = document.getElementById("c");
-        el.removeAttribute("val");
-        el.removeAttribute("my-val");
-        el.x = { a: 13 };
-        //el.setAttribute("disabled", "true");
-      }, 4000);
+      // setTimeout(() => {
+      //   let el = document.getElementById("c");
+      //   el.removeAttribute("val");
+      //   el.removeAttribute("my-val");
+      //   el.x = { a: 13 };
+      //   //el.setAttribute("disabled", "true");
+      // }, 4000);
 
     </script>
   </body>

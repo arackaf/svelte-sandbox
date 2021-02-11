@@ -11,9 +11,9 @@ import { SvelteElement } from "svelte/internal";
 // PR tracking a better solution is here: https://github.com/sveltejs/svelte/pull/4522
 // Note that this code MUST be here, and must run BEFORE our web components are defined (ie before require("../uikit-v2/index.js") which is in shared-components-api.js),
 // since lifecycle methods are read at definition time, for perf reasons, as explained here: https://twitter.com/justinfagnani/status/1359213920272044034 
-SvelteElement.prototype.disconnectedCallback = function () {
-  this.$destroy();
-};
+// SvelteElement.prototype.disconnectedCallback = function () {
+//   this.$destroy();
+// };
 
 require("./src/App.svelte");
 require("./src/WC2.svelte");

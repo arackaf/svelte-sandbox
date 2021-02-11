@@ -6,15 +6,12 @@
   let s;
 
   onMount(() => {
-    tick().then(() => {
-      let host = s.parentNode.host;
-      console.log(host);
-    });
+    console.log("MOUNT B")
 
-    return (() => {
-      console.log("DISCONNECT B");
-    })
+    // return (() => {
+    //   console.log("DISCONNECT B");
+    // })
   });
 </script>
 
-<slot bind:this={s}></slot>
+<h1>Hello</h1>
