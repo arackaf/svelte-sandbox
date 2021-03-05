@@ -1,30 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <meta charset="UTF-8" />
     <title>Hello Svelte</title>
   </head>
   <body class="scheme1">
-
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
+    <my-wc-4 foo="12"></my-wc-4>
     <div id="home"></div>
     <button onclick="toggle()">Toggle</button>
+    <button onclick="toggleDisabled()">Disabled</button>
+    <button onclick="loadEm()">Load</button>
+    <button onclick="dump()">DUMP</button>
+    <button onclick="toggleHtml()">Toggle Html</button>
+    <button onclick="createInstance()">Create instance</button>
+    <button onclick="addWC2()">Add a wc-2</button>
     <div id="sandbox"></div>
+    <div id="sandbox2"></div>
+    <div id="sandbox3"></div>
+    <br />
+    <br />
+
+    <my-wc-2>
+      <input id="input-wc2" value="99" />
+      <label class="red">RED 1</label>
+      <label class="red">RED 2</label>
+      <label class="red">RED 3</label>
+      <label class="red">RED 4</label>
+      <label class="blue">BLUE</label>
+      <div class="x">
+        <label class="nest">YES</label>
+        <label class="">NO</label>
+      </div>
+      <div class="y">
+        <label class="nest">NO</label>
+        <label class="">NO</label>
+      </div>
+      <div>I got no home so I stay in the default slot</div>
+      <div id="sandbox4"></div>
+    </my-wc-2>
 
     <script>
+      function toggleHtml() {
+        document.getElementById("sandbox4").innerHTML += "<my-wc-4></my-wc-4>";
+        setTimeout(() => { document.getElementById("sandbox4").innerHTML = ""; }, 1000);
+      }
+      function createInstance() {
+        document.createElement("my-wc-4");
+      }
+      
+      function addWC2(){
+        document.getElementById("sandbox2").innerHTML = `<my-wc><input /></my-wc>`;
+      }
+
+      function loadEm() {
+        let str = "";
+        for (let i = 0; i < 10000; i++) {
+          str += "<my-wc><input slot='slot1' class='i1' /><span slot='slot2'>Hi there</span></my-wc>"
+        }
+
+        console.log("STARTING");
+        document.getElementById("sandbox3").innerHTML = str;
+        console.log("DONE");
+      }
+      
+      function dump() {
+        document.getElementById("sandbox3").innerHTML = "";
+      }
+
+      setTimeout(() => {
+        let input = document.getElementById("input-wc2");
+        input.parentElement.removeChild(input);
+      }, 5000);
 
       var wc;
       var sandbox = document.getElementById("sandbox");
       var isIn = false;
       setTimeout(() => {
         wc = document.createElement("my-wc");
+        let input = document.createElement("input");
+        input.setAttribute("id", "i1")
+        //input.setAttribute("slot", "slot1");
+        wc.aValue = 99;
+        //wc.appendChild(input);
       }, 100);
+      setTimeout(() => {
+        //document.getElementById("sandbox2").appendChild(wc);
+      }, 200);
+      setTimeout(() => {
+        //wc.parentElement.removeChild(wc);
+      }, 300);
+      setTimeout(() => {
+        //document.getElementById("sandbox2").appendChild(wc);
+      }, 400);
 
-      function toggle(){
-        if (isIn) {
-          wc.parentNode.removeChild(wc);
+      function toggleDisabled() {
+        let input = document.getElementById("i1");
+        if (input.hasAttribute("disabled")) {
+          input.removeAttribute("disabled");
         } else {
-          sandbox.appendChild(wc);
+          input.setAttribute("disabled", "disabled");
+        }
+      }
+
+      function toggle() {
+        if (isIn) {
+          sandbox.innerHTML = "";
+        } else {
+          sandbox.innerHTML = "<my-wc><input slot='slot1' id='i1' /><span slot='slot2'>Hi there</span></my-wc>";
         }
 
         isIn = !isIn;
@@ -67,8 +156,7 @@
       //   el.setAttribute("x", "12010");
       //   el.setAttribute("my-val", "a");
       // }, 2000);
-      
-      
+
       // setTimeout(() => {
       //   let el = document.getElementById("c");
       //   el.setAttribute("val", "y");
@@ -84,10 +172,6 @@
       //   el.x = { a: 13 };
       //   //el.setAttribute("disabled", "true");
       // }, 4000);
-
     </script>
   </body>
 </html>
-
-
-

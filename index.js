@@ -17,3 +17,6 @@ import { SvelteElement } from "svelte/internal";
 
 require("./src/App.svelte");
 require("./src/WC2.svelte");
+require("./src/WC3.svelte");
+require("./src/WC4.svelte");
+require("./src/wc-scrollable.svelte");
