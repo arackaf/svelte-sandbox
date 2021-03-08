@@ -5,6 +5,8 @@
     <title>Hello Svelte</title>
   </head>
   <body class="scheme1">
+    <div id="new-home" style="border: 1px solid pink;">
+    </div>
     <my-wc-4 foo="12"></my-wc-4>
     <my-wc-4 foo="12"></my-wc-4>
     <my-wc-4 foo="12"></my-wc-4>
@@ -46,6 +48,17 @@
       <div id="sandbox4"></div>
     </my-wc-2>
 
+    <my-wc-5 id="thing">
+
+    </my-wc-5>
+
+    <my-wc-6>
+      <my-wc-7></my-wc-7>
+      <my-wc-7></my-wc-7>
+      <my-wc-7></my-wc-7>
+      <my-wc-7></my-wc-7>
+    </my-wc-6>
+
     <script>
       function toggleHtml() {
         document.getElementById("sandbox4").innerHTML += "<my-wc-4></my-wc-4>";
@@ -58,6 +71,11 @@
       function addWC2(){
         document.getElementById("sandbox2").innerHTML = `<my-wc><input /></my-wc>`;
       }
+      setInterval(() => {
+        let sp = document.createElement("span");
+        sp.textContent = "Hi";
+        document.getElementById("thing").appendChild(sp);
+      }, 1000);
 
       function loadEm() {
         let str = "";
