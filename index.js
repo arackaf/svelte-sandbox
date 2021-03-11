@@ -23,3 +23,10 @@ require("./src/WC5.svelte");
 require("./src/WC6.svelte");
 require("./src/WC7.svelte");
 require("./src/wc-scrollable.svelte");
+
+
+class TempElement extends HTMLElement {
+  constructor() {
+    this.attachShadow({ mode: "open" })
+  }
+}

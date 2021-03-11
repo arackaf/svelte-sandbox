@@ -23,11 +23,14 @@
     <button onclick="toggleHtml()">Toggle Html</button>
     <button onclick="createInstance()">Create instance</button>
     <button onclick="addWC2()">Add a wc-2</button>
+    <button onclick="dump2()">Dump 2</button>
     <div id="sandbox"></div>
     <div id="sandbox2"></div>
     <div id="sandbox3"></div>
     <br />
     <br />
+
+    <div id="junk"></div>
 
     <my-wc-2>
       <input id="input-wc2" value="99" />
@@ -71,6 +74,14 @@
       function addWC2(){
         document.getElementById("sandbox2").innerHTML = `<my-wc><input /></my-wc>`;
       }
+
+      function dump2() {
+        let junk = document.getElementById("junk");
+        for (let i = 0; i < 1000; i++) {
+          junk.appendChild(document.createElement("div"));
+        }
+      }
+
       setInterval(() => {
         let sp = document.createElement("span");
         sp.textContent = "Hi";
