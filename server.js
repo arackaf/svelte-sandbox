@@ -64,5 +64,6 @@ function shutdown() {
 
 app.listen(8080);
 
-export default null;
+console.log(`PORT 8080`);
 
+export default null;
